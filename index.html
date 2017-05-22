@@ -1,202 +1,34 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="author" content="Antón R. Yuste - @antonmry - OptareSolutions &amp; VigoJUG" /><title>De Groovy &#8230;&#8203; e Sancho Panza</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="reveal.js/css/theme/summit.css" id="theme" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" /><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet" /><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><link rel="stylesheet" type="text/css" href="reveal.js/css/theme/asciinema-player.css" />
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="author" content="VigoJUG &amp; VigoTech Alliance" /><title>Primeiro taller de iniciación a OOP</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="reveal.js/css/theme/summit.css" id="theme" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" /><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet" /><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><link rel="stylesheet" type="text/css" href="reveal.js/css/theme/asciinema-player.css" />
 <link rel="stylesheet" type="text/css" href="reveal.js/css/theme/github-gist.css" />
 <script src="reveal.js/css/theme/asciinema-player.js"></script>
 <script>if (location.hostname === "localhost" || location.hostname === "127.0.0.1")
     document.write('<script src="http://'
     + (location.host || 'localhost').split(':')[0]
     + ':35729/livereload.js"></'
-    + 'script>')</script></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>De Groovy &#8230;&#8203; e Sancho Panza</h1><p class="author"><small>Antón R. Yuste - @antonmry - OptareSolutions &amp; VigoJUG</small></p></section><section id="e-ti-de-quen-ves-sendo" data-background-image="./images/costadamorte.jpg" data-background-size="cover"><h2>E ti, de quen ves sendo?</h2>
-<style>
-.asciinema-terminal.font-medium {
-  font-size: 16px;
-}
-</style>
-
-<div class="pictureWrapper">
-   <div class="picture"><img src="images/mini-me.png"></div>
-</div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">speaker = [
-    name: 'Antón R. Yuste',
-    company: 'Optare Solutions',
-    oss: 'GaliBots committer and founder',
-    twitter: '@antonmry',
-    github: 'antonmry',
-    extraDescription: ['VigoJUG co-organiser',
-         '''Misc OSS contribs (Gradle plugins,
-            docker images, SIP &amp; WebRTC...)''',
-         'surfer wannabe',]
-].each{ k, v -&gt; println "${k}:${v}" }</code></pre></div></div></section>
-<section id="axenda"><h2>Axenda</h2><div class="ulist"><ul><li><p>¿Sancho Panza?</p></li><li><p>Instalación</p></li><li><p>Scripting e prototipado</p></li><li><p>Xestión de dependencias e de configuración</p></li><li><p>Probas unitarias e de integración</p></li><li><p>DSLs (Jenkins, JMeter, SoapUI)</p></li><li><p>As tuas propias DSLs</p></li></ul></div></section>
-<section id="sancho-panza"><h2>¿Sancho Panza?</h2><div class="imageblock" style=""><img src="./images/sancho.jpg" alt="sancho" width="640" height="480" /></div></section>
-<section id="groovy-vigojug-vigojug-groovy"><h2>Groovy, VigoJUG, VigoJUG, Groovy</h2><div class="ulist"><ul><li><p>Sintaxe moi similar a Java</p></li><li><p>Sinxelo e moi expresivo</p></li><li><p>Orientado a obxectos&#8230;&#8203; e funcional</p></li><li><p>Tipado&#8230;&#8203; se queres</p></li><li><p>Dinámico&#8230;&#8203; ou estático</p></li><li><p>Usado por Netflix, Oracle, Google, etc.</p></li></ul></div></section>
-<section id="groovy-no-mapa-da-jvm"><h2>Groovy no mapa da JVM</h2><div class="imageblock" style=""><img src="./images/groovy-island.jpg" alt="groovy-island" width="640" height="480" /></div>
-<div class="paragraph"><p>Source: <a href="https://jaxenter.com/pirates-of-the-jvm-the-infographic-132524.html">@jaxenter.com</a></p></div></section>
-<section><section id="exemplo"><h2>Exemplo</h2><div class="paragraph"><p>Calcular a potencia de dous nun array</p></div><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">[0, 1, 2, 3, 4, ..., n]</code></pre></div></div><div class="imageblock" style=""><img src="./images/formula.jpg" alt="sancho" width="256" height="192" /></div><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">[0, 1, 2, 4, 8, ..., 2^n]</code></pre></div></div></section><section id="java-7"><h2>Java 7</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">import java.util.ArrayList;
-import java.util.List;
-
-class PowersOfTwoJava7 {
-
-    public static void main(String[] args) {
-        List list = new ArrayList();
-
-        for (int i = 0; i &lt; 10; i++) {
-           list.add(i);
-        }
-
-        for (int i = 0; i &lt; list.size(); i++) {
-            System.out.println((int) Math.pow(2, i));
-        }
-    }
-
-}</code></pre></div></div></section><section id="java-8"><h2>Java 8</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">import java.util.stream.IntStream;
-
-class PowersOfTwoJava8 {
-
-    public static void main(String[] args) {
-
-        IntStream.range(0, 9)
-                .map(i -&gt; (int) Math.pow(2, i))
-                .forEach(System.out::println);
-
-    }
-}</code></pre></div></div></section><section id="groovy"><h2>Groovy</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">(0..&lt;10).forEach() { println 2 ** it }</code></pre></div></div></section></section>
-<section><section id="instalacin-con-sdkman"><h2>Instalación con SDKMAN</h2><div class="paragraph"><p>
-<div id="player-container-79f92ad0-db59-4ef2-9068-fdc4e31260e4"></div>
-  <script>
-    asciinema_player.core.CreatePlayer('player-container-79f92ad0-db59-4ef2-9068-fdc4e31260e4', 'sdkman.json', { width: 114, height: 24, fontSize: 'medium' });
-  </script>
-</p></div></section><section id="moi-doado"><h2>Moi doado</h2><div class="listingblock"><div class="content"><pre class="highlight"><code>curl -s "https://get.sdkman.io" | bash
-sdk install groovy
-sdk install gradle
-sdk install sshoogr</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="https://get.sdkman.io">sdkman.io</a></p></div></section></section>
-<section><section id="scripting-e-prototipado"><h2>Scripting e prototipado</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">@Grab('org.codehaus.groovy.modules.http-builder:http-builder:0.7.1')
-
-import groovyx.net.http.RESTClient
-
-def jokes = new RESTClient('http://tambal.azurewebsites.net')
-def resp = jokes.get( path: '/joke/random/' )
-
-assert resp.status == 200
-
-println "Joke: " + resp.data.joke</code></pre></div></div></section><section id="demo-scripting"><h2>Demo scripting</h2><div class="paragraph"><p>
-<div id="player-container-440f1280-0612-45ef-b731-c1f9a8a14fa5"></div>
-  <script>
-    asciinema_player.core.CreatePlayer('player-container-440f1280-0612-45ef-b731-c1f9a8a14fa5', 'assert.json', { width: 114, height: 24, fontSize: 'medium' });
-  </script>
-</p></div></section></section>
-<section id="xestin-de-dependencias-con-gradle"><h2>Xestión de dependencias con Gradle</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">apply plugin: 'java'
-
-sourceCompatibility = 1.7
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile group: 'log4j', name: 'log4j', version: '1.0'
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-}</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="https://gradle.org/docs#getting-started">www.gradle.org</a></p></div></section>
-<section id="xestin-da-configuracin-con-sshoogr"><h2>Xestión da configuración con sshoogr</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">remoteSession('user2:654321@localhost:2222') {
-  exec 'rm -rf /tmp/*'
-  exec 'touch /var/lock/my.pid'
-  remoteFile('/var/my.conf').text = "enabled=true"
-}</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="https://github.com/aestasit/sshoogr">github.com/aestasit/sshoogr</a></p></div></section>
-<section id="probas-unitarias-con-spock"><h2>Probas unitarias con Spock</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">def "HashMap accepts null key"() {
-  setup:
-  def map = new HashMap()
-
-  when:
-  map.put(null, "elem")
-
-  then:
-  notThrown(NullPointerException)
-}</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="http://spockframework.org">spockframework.org</a></p></div></section>
-<section id="probas-e2e-con-geb"><h2>Probas E2E con Geb</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">import geb.Browser
-
-Browser.drive {
-    go "http://myapp.com/login"
-
-    assert $("h1").text() == "Please Login"
-
-    $("form.login").with {
-        username = "admin"
-        password = "password"
-        login().click()
-    }
-
-    assert $("h1").text() == "Admin Section"
-}</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="http://www.gebish.org">www.gebish.org</a></p></div></section>
-<section id="dsls-jenkins-jmeter-soapui"><h2>DSLs (Jenkins, JMeter, SoapUI)</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'make'
-            }
-        }
-        stage('Test'){
-            steps {
-                sh 'make check'
-                junit 'reports/**/*.xml'
-            }
-        }
-    }
-}</code></pre></div></div></section>
-<section id="custom-dsls"><h2>Custom DSLs</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">// equivalent to: turn(left).then(right)
-turn left then right
-
-// equivalent to: take(2.pills).of(chloroquinine).after(6.hours)
-take 2.pills of chloroquinine after 6.hours
-
-// equivalent to: paint(wall).with(red, green).and(yellow)
-paint wall with red, green and yellow
-
-// with named parameters too
-// equivalent to: check(that: margarita).tastes(good)
-check that: margarita tastes good
-
-// with closures as parameters
-// equivalent to: given({}).when({}).then({})
-given { } when { } then { }</code></pre></div></div>
-<div class="paragraph"><p>Info: <a href="http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html">groovy-lang.org</a></p></div></section>
-<section id="resumen" data-background-image="./images/austin-powers.jpg" data-background-size="cover"></section>
-<section id="gracias" data-background-image="./images/questions.jpg" data-background-size="cover"><h2>¡Gracias!</h2>
-<div class="ulist"><ul><li><p>Slides: <a href="https://antonmry.github.io/talk-vigojug-2017-de-groovy-e-sancho-panza/" class="bare">https://antonmry.github.io/talk-vigojug-2017-de-groovy-e-sancho-panza/</a></p></li><li><p>Código: <a href="https://github.com/antonmry/talk-vigojug-2017-de-groovy-e-sancho-panza" class="bare">https://github.com/antonmry/talk-vigojug-2017-de-groovy-e-sancho-panza</a></p></li><li><p>Documentación Groovy: <a href="http://www.groovy-lang.org" class="bare">http://www.groovy-lang.org</a></p></li><li><p>Tamén podes preguntarme en twitter: <a href="http://twitter.com/antonmry">@antonmry</a></p></li></ul></div></section>
-<section id="vigojug"><h2>VigoJUG</h2><div class="ulist"><ul><li><p>Un meetup o derradeiro martes de cada mes</p></li><li><p>¿Te animas cunha charla?. Licencias de JetBrains ;-)</p></li><li><p>Involucrar as empresas locais</p></li><li><p>Outros grupos locais (mañá JS!)</p></li><li><p>Canal de slack #VigoJUG en <a href="http://phpvigo.slack.com" class="bare">http://phpvigo.slack.com</a></p></li></ul></div>
+    + 'script>')</script></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Primeiro taller de iniciación a OOP</h1><p class="author"><small>VigoJUG &amp; VigoTech Alliance</small></p></section><section id="axenda"><h2>Axenda</h2><div class="ulist"><ul><li><p>VigoTech</p></li><li><p>VigoJUG</p></li><li><p>O reto</p></li><li><p>Talleres de iniciación</p></li><li><p>Instalar Java e un IDE</p></li><li><p>Clases, obxectos, atributos e métodos</p></li><li><p>Encapsulación e abstracción</p></li><li><p>Constructores</p></li><li><p>Exercicio da biblioteca</p></li><li><p>Dúbidas</p></li></ul></div></section>
+<section id="vigotech-alliance" data-background-image="./images/vigotech.jpg"></section>
+<section id="vigojug"><h2>VigoJUG</h2><div class="ulist"><ul><li><p>Un meetup o primeiro martes de cada mes</p></li><li><p>Involucrar as empresas locais e promover a tecnoloxía</p></li><li><p>¿Te animas cunha charla?. Licencias de JetBrains ;-)</p></li><li><p>Outras iniciativas: clubes de lectura</p></li><li><p>Canal de slack #VigoJUG en <a href="http://www.vigotech.org" class="bare">http://www.vigotech.org</a></p></li></ul></div>
 <div class="imageblock" style=""><img src="./images/sponsors.jpg" alt="sponsors" width="800" height="200" /></div></section>
 <section id="o-reto"><h2>O reto</h2><div class="ulist"><ul><li><p>Exercicio de programación breve (30 minutos) en GitHub</p></li><li><p>PRs (un directorio por cada usuaria)</p></li><li><p>Unha semana antes: se fecha e lanzamos enquisa (Twitter?, +1 en Github?)</p></li><li><p>Charla lostrego no seguinte meetup</p></li></ul></div></section>
-<section><section id="kahoot"><h2>Kahoot</h2><div class="imageblock" style=""><img src="./images/kahoot.jpg" alt="kahoot" width="640" height="480" /></div></section><section id="quiz-1"><h2>Quiz 1</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">// Saved in file ".java"
+<section id="talleres-de-iniciacin"><h2>Talleres de iniciación</h2><div class="ulist"><ul><li><p>Un taller o tercer martes de cada mes</p></li><li><p>Rolda de preguntas para falar dun tema</p></li><li><p>Exercicio práctico para asentar os coñecementos</p></li><li><p>Calquera cousa que os traiades de casa</p></li><li><p>Abertos a outros formatos e iniciativas</p></li></ul></div></section>
+<section id="non-sexades-tmidos-preguntar"><h2>Non sexades tímidos: ¡¡preguntar!!</h2><div class="imageblock" style=""><img src="./images/baby.gif" alt="timidos" /></div>
+<div class="paragraph"><p>Source: <a href="http://gif.co/vc7E.gif" class="bare">http://gif.co/vc7E.gif</a></p></div></section>
+<section id="instalar-java-e-un-ide"><h2>Instalar Java e un IDE</h2><div class="ulist"><ul><li><p>Java: <a href="http://www.oracle.com/technetwork/es/java/javase/downloads/index.html" class="bare">http://www.oracle.com/technetwork/es/java/javase/downloads/index.html</a></p></li><li><p>IntelliJ Idea CE: <a href="https://www.jetbrains.com/idea/download/" class="bare">https://www.jetbrains.com/idea/download/</a></p></li></ul></div></section>
+<section><section id="primeira-parte"><h2>Primeira parte</h2><div class="ulist"><ul><li><p>Clases, obxectos, atributos e métodos</p></li><li><p>Encapsulación e abstracción</p></li></ul></div></section><section id="quiz-1"><h2>Quiz 1</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">// Saved in file ".java"
 class A{
 	public static void main(String args[]){
 		System.out.println("Hello java");
 	}
-}</code></pre></div></div></section><section id="quiz-2"><h2>Quiz 2</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">Collection&lt;String&gt; coll = new ArrayList&lt;&gt;();
-coll.add("Fred"); coll.add("Jim"); coll.add("Sheila");
-System.out.println("coll is " + coll);
-coll.remove(0); // line n1
-System.out.println("coll is " + coll);</code></pre></div></div></section><section id="quiz-3"><h2>Quiz 3</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">Path p = Paths.get("a", "b", "cee"); // line n1
-System.out.println(p.endsWith(Paths.get("b", "cee")));
-System.out.println(p.endsWith(Paths.get("ee")));</code></pre></div></div></section><section id="quiz-4"><h2>Quiz 4</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">class A {
-    int x = 1;
-
-    public static void main(String [] args) {
-        System.out.println("x is " + x);
-    }
-}</code></pre></div></div></section><section id="quiz-5"><h2>Quiz 5</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">class A {
-    public static void main(String [] args) {
-        A a = new B();
-    }
-}
-
-class B extends A {
-}</code></pre></div></div></section><section id="quiz-6"><h2>Quiz 6</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="groovy language-groovy">def it = 4
-(0..&lt;10).forEach() { println 2 ** it + " " }</code></pre></div></div></section></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+}</code></pre></div></div></section></section>
+<section><section id="segunda-parte"><h2>Segunda parte</h2><div class="ulist"><ul><li><p>Constructores</p></li></ul></div></section><section id="quiz-1-2"><h2>Quiz 1</h2><div class="listingblock"><div class="content"><pre class="highlight"><code class="java language-java">// Saved in file ".java"
+class A{
+	public static void main(String args[]){
+		System.out.println("Hello java");
+	}
+}</code></pre></div></div></section></section>
+<section id="exercicio-da-biblioteca"><h2>Exercicio da biblioteca</h2><div class="ulist"><ul><li><p>Requisitos:</p></li><li><p>Código:</p></li></ul></div></section>
+<section id="dbidas-e-fontes" data-background-image="./images/questions.jpg" data-background-size="cover"><h2>Dúbidas e fontes</h2>
+<div class="ulist"><ul><li><p>Slides: PENDENTE</p></li><li><p>Código: PENDENTE</p></li><li><p>Fonte: <a href="https://www.coursera.org/learn/java-poo" class="bare">https://www.coursera.org/learn/java-poo</a></p></li></ul></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
@@ -275,7 +107,7 @@ Reveal.initialize({
   ]
 });</script><div id="footer">
   <div style="width:100%">
-     <div style="display:inline; vertical-align: middle; line-height: 40px;">2017 - VigoJUG - @antonmry - De Groovy e Sancho Panza</div>
+     <div style="display:inline; vertical-align: middle; line-height: 40px;">2017 - @VigoJUG - Taller de iniciación a Java e a programación orientada a obxectos</div>
      <div style="display:inline; position:absolute; right: 50px;"><img src="images/vigojug-logo-min.png"></div>
   </div>
 </div>
